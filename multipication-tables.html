@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multiplication Tables Explorer</title>
+  <style>
+    /* RESET & BASE STYLES */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      line-height: 1.6;
+    }
+    header, footer {
+      text-align: center;
+      background: #fff;
+      padding: 15px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    /* TABS NAVIGATION */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #007BFF;
+      margin-bottom: 20px;
+    }
+    .tabs button {
+      flex: 1;
+      padding: 10px;
+      background: none;
+      border: none;
+      border-bottom: 4px solid transparent;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #007BFF;
+      transition: all 0.3s;
+    }
+    .tabs button.active {
+      border-bottom-color: #007BFF;
+      font-weight: bold;
+    }
+    /* TAB CONTENT */
+    .tabcontent {
+      display: none;
+    }
+    .tabcontent.active {
+      display: block;
+    }
+    /* SECTIONS */
+    section {
+      margin-bottom: 20px;
+    }
+    section p,
+    section ul {
+      margin-bottom: 10px;
+    }
+    section ul li {
+      margin-left: 20px;
+      /* No bullet points for multiplication table section if using a table instead */
+    }
+    /* FORMS & CALCULATOR */
+    .calc {
+      margin: 15px 0;
+      text-align: center;
+    }
+    .calc label {
+      display: inline-block;
+      width: 200px;
+      font-weight: bold;
+    }
+    .calc input, 
+    .calc select {
+      padding: 5px;
+      width: 100px;
+      margin-right: 10px;
+    }
+    .btn {
+      padding: 7px 15px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #e9f2f9;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+    }
+    /* TABLE STYLE FOR MULTIPLICATION CHART */
+    table.multiplication {
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+    table.multiplication th,
+    table.multiplication td {
+      border: 1px solid #007BFF;
+      padding: 5px 10px;
+      text-align: center;
+    }
+    table.multiplication th {
+      background: #007BFF;
+      color: #fff;
+    }
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #fff;
+      margin-top: 20px;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Multiplication Tables Explorer</h1>
+  </header>
+  <div class="container">
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+      <button class="tablinks active" onclick="openTab(event, 'info')" id="defaultTab">Info</button>
+      <button class="tablinks" onclick="openTab(event, 'table')">Table</button>
+      <button class="tablinks" onclick="openTab(event, 'quiz')">Quiz</button>
+      <button class="tablinks" onclick="openTab(event, 'tips')">Tips</button>
+    </div>
+
+    <!-- Info Tab -->
+    <div id="info" class="tabcontent active">
+      <h2>Introduction to Multiplication Tables</h2>
+      <section>
+        <p>Multiplication tables are a fundamental tool in arithmetic. They help build a robust number sense and support more advanced mathematical topics.</p>
+        <p><strong>Key Benefits:</strong></p>
+        <ul>
+          <li>Enhance mental calculation skills.</li>
+          <li>Provide a basis for algebra, fractions, and more.</li>
+          <li>Improve speed and fluency in mathematics.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Complete Multiplication Chart (1 to 10)</h3>
+        <table class="multiplication">
+          <tr>
+            <th>*</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>6</th>
+            <th>7</th>
+            <th>8</th>
+            <th>9</th>
+            <th>10</th>
+          </tr>
+          <!-- Generate rows 1 to 10 -->
+          <!-- Row for 1 -->
+          <tr>
+            <th>1</th>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+          <!-- Row for 2 -->
+          <tr>
+            <th>2</th>
+            <td>2</td>
+            <td>4</td>
+            <td>6</td>
+            <td>8</td>
+            <td>10</td>
+            <td>12</td>
+            <td>14</td>
+            <td>16</td>
+            <td>18</td>
+            <td>20</td>
+          </tr>
+          <!-- Row for 3 -->
+          <tr>
+            <th>3</th>
+            <td>3</td>
+            <td>6</td>
+            <td>9</td>
+            <td>12</td>
+            <td>15</td>
+            <td>18</td>
+            <td>21</td>
+            <td>24</td>
+            <td>27</td>
+            <td>30</td>
+          </tr>
+          <!-- Row for 4 -->
+          <tr>
+            <th>4</th>
+            <td>4</td>
+            <td>8</td>
+            <td>12</td>
+            <td>16</td>
+            <td>20</td>
+            <td>24</td>
+            <td>28</td>
+            <td>32</td>
+            <td>36</td>
+            <td>40</td>
+          </tr>
+          <!-- Row for 5 -->
+          <tr>
+            <th>5</th>
+            <td>5</td>
+            <td>10</td>
+            <td>15</td>
+            <td>20</td>
+            <td>25</td>
+            <td>30</td>
+            <td>35</td>
+            <td>40</td>
+            <td>45</td>
+            <td>50</td>
+          </tr>
+          <!-- Row for 6 -->
+          <tr>
+            <th>6</th>
+            <td>6</td>
+            <td>12</td>
+            <td>18</td>
+            <td>24</td>
+            <td>30</td>
+            <td>36</td>
+            <td>42</td>
+            <td>48</td>
+            <td>54</td>
+            <td>60</td>
+          </tr>
+          <!-- Row for 7 -->
+          <tr>
+            <th>7</th>
+            <td>7</td>
+            <td>14</td>
+            <td>21</td>
+            <td>28</td>
+            <td>35</td>
+            <td>42</td>
+            <td>49</td>
+            <td>56</td>
+            <td>63</td>
+            <td>70</td>
+          </tr>
+          <!-- Row for 8 -->
+          <tr>
+            <th>8</th>
+            <td>8</td>
+            <td>16</td>
+            <td>24</td>
+            <td>32</td>
+            <td>40</td>
+            <td>48</td>
+            <td>56</td>
+            <td>64</td>
+            <td>72</td>
+            <td>80</td>
+          </tr>
+          <!-- Row for 9 -->
+          <tr>
+            <th>9</th>
+            <td>9</td>
+            <td>18</td>
+            <td>27</td>
+            <td>36</td>
+            <td>45</td>
+            <td>54</td>
+            <td>63</td>
+            <td>72</td>
+            <td>81</td>
+            <td>90</td>
+          </tr>
+          <!-- Row for 10 -->
+          <tr>
+            <th>10</th>
+            <td>10</td>
+            <td>20</td>
+            <td>30</td>
+            <td>40</td>
+            <td>50</td>
+            <td>60</td>
+            <td>70</td>
+            <td>80</td>
+            <td>90</td>
+            <td>100</td>
+          </tr>
+        </table>
+      </section>
+    </div>
+
+    <!-- Table Tab -->
+    <div id="table" class="tabcontent">
+      <h2>Multiplication Table Calculator</h2>
+      <div class="calc">
+        <label for="tableNumber">Enter a number:</label>
+        <input type="number" id="tableNumber" min="1" step="1" placeholder="e.g., 5">
+        <button class="btn" onclick="showTable()">Show Table</button>
+      </div>
+      <div id="tableResult" class="result"></div>
+    </div>
+
+    <!-- Quiz Tab -->
+    <div id="quiz" class="tabcontent">
+      <h2>Multiplication Quiz</h2>
+      <div class="calc">
+        <label for="quizFocus">Select Table (optional):</label>
+        <select id="quizFocus">
+          <option value="">All</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+        <button class="btn" onclick="newQuizQuestion()">New Question</button>
+      </div>
+      <div id="quizQuestion" class="result"></div>
+      <div class="calc">
+        <label for="quizAnswer">Your Answer:</label>
+        <input type="number" id="quizAnswer" placeholder="e.g., 24">
+        <button class="btn" onclick="checkQuizAnswer()">Submit Answer</button>
+      </div>
+      <div id="quizFeedback" class="result"></div>
+    </div>
+
+    <!-- Tips Tab -->
+    <div id="tips" class="tabcontent">
+      <h2>Multiplication Tips</h2>
+      <section>
+        <p>Mastering multiplication tables becomes easier with a few smart tricks. Here are some tips and techniques:</p>
+        <ol style="list-style: decimal; margin: 0 auto; max-width: 800px; text-align: left;">
+          <li><strong>Practice regularly:</strong> Short, daily practice sessions help reinforce memory.</li>
+          <li><strong>Break them into chunks:</strong> Learn one table at a time (e.g., start with 2’s and 5’s).</li>
+          <li><strong>Use finger tricks:</strong> For example, many find a clever finger method for the 9’s table.</li>
+          <li><strong>Create mnemonic devices:</strong> Associate numbers with stories or images to remember more easily.</li>
+          <li><strong>Visualize patterns:</strong> Notice symmetry in the 9’s table or how the 5’s always end with 5 or 0.</li>
+          <li><strong>Use flashcards:</strong> Quick recalls using flashcards can build speed and accuracy.</li>
+          <li><strong>Group practice:</strong> Pair up with a friend and quiz each other.</li>
+          <li><strong>Apps and games:</strong> Reinforce learning with interactive games and challenges.</li>
+          <li><strong>Write them out:</strong> Repeatedly writing the tables by hand solidifies your memorization.</li>
+          <li><strong>Celebrate progress:</strong> Reward yourself for mastering each table!</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    Bocaletto Luca
+  </footer>
+
+  <script>
+    "use strict";
+    // TAB NAVIGATION FUNCTION
+    function openTab(evt, tabName) {
+      const tabcontents = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabcontents.length; i++) {
+        tabcontents[i].style.display = "none";
+        tabcontents[i].classList.remove("active");
+      }
+      const tablinks = document.getElementsByClassName("tablinks");
+      for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+      }
+      document.getElementById(tabName).style.display = "block";
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+    document.getElementById("defaultTab").click();
+
+    /* ----- TABLE TAB FUNCTIONS ----- */
+    function showTable() {
+      const num = parseInt(document.getElementById("tableNumber").value);
+      const resultDiv = document.getElementById("tableResult");
+      if (isNaN(num) || num < 1) {
+        resultDiv.innerHTML = "<p>Please enter a valid positive integer.</p>";
+        return;
+      }
+      let html = `<h3>Multiplication Table for ${num}</h3><table style="margin: 0 auto; border-collapse: collapse;" border="1"><tr>`;
+      // Header row: blank cell + 1 to 10
+      html += `<th>*</th>`;
+      for (let i = 1; i <= 10; i++) {
+        html += `<th>${i}</th>`;
+      }
+      html += "</tr>";
+      // Data rows: row header and products
+      for (let i = 1; i <= 10; i++) {
+        html += "<tr>";
+        html += `<th>${i}</th>`;
+        for (let j = 1; j <= 10; j++) {
+          html += `<td>${num * i * j}</td>`;
+        }
+        html += "</tr>";
+      }
+      html += "</table>";
+      resultDiv.innerHTML = html;
+    }
+
+    /* ----- QUIZ TAB FUNCTIONS ----- */
+    let currentX, currentY, currentAnswer;
+    function newQuizQuestion() {
+      const focus = document.getElementById("quizFocus").value;
+      if (focus) {
+        currentX = parseInt(focus);
+      } else {
+        currentX = Math.floor(Math.random() * 10) + 1;
+      }
+      currentY = Math.floor(Math.random() * 10) + 1;
+      currentAnswer = currentX * currentY;
+      const questionDiv = document.getElementById("quizQuestion");
+      questionDiv.innerHTML = `<p>What is ${currentX} × ${currentY}?</p>`;
+      document.getElementById("quizFeedback").innerHTML = "";
+      document.getElementById("quizAnswer").value = "";
+    }
+
+    function checkQuizAnswer() {
+      const userAns = parseInt(document.getElementById("quizAnswer").value);
+      const feedbackDiv = document.getElementById("quizFeedback");
+      if (isNaN(userAns)) {
+        feedbackDiv.innerHTML = "<p>Please enter your answer.</p>";
+        return;
+      }
+      if (userAns === currentAnswer) {
+        feedbackDiv.innerHTML = "<p style='color: green;'>Correct!</p>";
+      } else {
+        feedbackDiv.innerHTML = `<p style='color: red;'>Incorrect! The correct answer is ${currentAnswer}.</p>`;
+      }
+    }
+
+    /* ----- TIPS TAB: Content is static ----- */
+    // (No additional JS is needed here unless you want interactivity.)
+
+  </script>
+</body>
+</html>
