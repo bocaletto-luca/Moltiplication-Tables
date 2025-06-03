@@ -2,6 +2,7 @@
 
 🚀 **Multiplication-Tables Web App** is an interactive educational tool designed to **teach and practice multiplication tables**. Whether you're a beginner or looking to refine your skills, this web app provides a **dynamic and engaging** way to learn **multiplication** through exercises and visual aids. 🧮  
 
+[![Test Online](https://img.shields.io/badge/Test%20Online-Click%20Here-brightgreen?style=for-the-badge)](https://bocaletto-luca.github.io/Multiplication-Tables/)
 ---
 
 ## 🏆 Features  
